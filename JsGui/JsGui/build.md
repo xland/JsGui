@@ -1,23 +1,39 @@
-# ±àÒëwebui
-## ×¼±¸
-ĞŞ¸Ä Makefile.nmake
+ï»¿# ç¼–è¯‘webui
+## å‡†å¤‡
+ä¿®æ”¹ Makefile.nmake
 
-Ö÷ÒªÊÇÏÂÃæÕâ¼¸ĞĞ£¬ÈÃrelease°æ±àÒëµ½releaseÄ¿Â¼ÏÂÈ¥
+ä¸»è¦æ˜¯ä¸‹é¢è¿™å‡ è¡Œï¼Œè®©releaseç‰ˆç¼–è¯‘åˆ°releaseç›®å½•ä¸‹å»
 ```
 release:
 	@- mkdir dist\release >nul 2>&1
 	@- cd $(MAKEDIR)/dist/release
 ```
 
-## ±àÒë
-´ò¿ª cmd
+## ç¼–è¯‘
+æ‰“å¼€ cmd
 
-Ö´ĞĞ´ËÅú´¦Àí£º
+æ‰§è¡Œæ­¤æ‰¹å¤„ç†ï¼š
 ```
 C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvars64.bat
 ```
-ÔÚCMDÖĞÖ´ĞĞÃüÁî
+åœ¨CMDä¸­æ‰§è¡Œå‘½ä»¤
 ```
 nmake -f Makefile debug
 nmake -f Makefile
 ```
+
+# ç¼–è¯‘QuickJs
+
+cmakeç¼–è¯‘æ²¡é—®é¢˜ï¼›
+include quickjs.hæ—¶ï¼Œç¼–è¯‘æœ¬é¡¹ç›®æ—¶æœ‰é—®é¢˜ï¼š
+
+```C++
+- return JS_MKVAL(JS_TAG_INT, val);
++ return JSValue{
++     .u{ JSValueUnion{.int32 = val } }, .tag{ JS_TAG_INT }
++ };
+```
+
+è¿™ä¸ªé—®é¢˜è¦æ”¹ä¸‰å¤„
+
+Quické»˜è®¤æ˜¯æ²¡æœ‰consoleå¯¹è±¡çš„
