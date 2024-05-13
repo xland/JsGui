@@ -1,1 +1,1 @@
-console.log(123);
+(function (g) { let win = new Win(); })(globalThis);

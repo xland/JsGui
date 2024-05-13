@@ -2,6 +2,7 @@
 
 extern "C" {
 #include <quickjs.h>
+#include "quickjs-libc.h"
 }
 
 class JsEnv

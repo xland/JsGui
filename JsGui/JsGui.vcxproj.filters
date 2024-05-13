@@ -21,6 +21,12 @@
     <ClCompile Include="JsEnv.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Win.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Fs.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="build.md" />
@@ -29,6 +35,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="JsEnv.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Win.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Fs.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

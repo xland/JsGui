@@ -102,7 +102,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;UNICODE;DEBUG;_GNU_SOURCE;WIN32_LEAN_AND_MEAN;_WIN32_WINNT=0x0602;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;UNICODE;DEBUG;WIN32_LEAN_AND_MEAN;JIT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>D:\sdk\webui\include;D:\sdk\quickjs;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -144,8 +144,10 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Fs.cpp" />
     <ClCompile Include="JsEnv.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Win.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="build.md" />
@@ -153,7 +155,9 @@
     <None Include="todo.md" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Fs.h" />
     <ClInclude Include="JsEnv.h" />
+    <ClInclude Include="Win.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
