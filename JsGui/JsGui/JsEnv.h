@@ -8,6 +8,7 @@ class JsEnv
 {
 public:
 	static void Init();
+	static void Dispose();
 	static JsEnv* Get();
 	static JSContext* GetContext();
 	static int RegModel(JSContext* ctx, JSModuleDef* m);

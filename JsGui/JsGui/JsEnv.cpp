@@ -28,10 +28,6 @@ static JSValue js_console_log(JSContext* ctx, JSValueConst this_val, int argc, J
 
 JsEnv::JsEnv()
 {
-    // 初始化JS运行时和上下文
-    JSRuntime* rt;
-    JSContext* ctx;
-
     rt = JS_NewRuntime();
     if (!rt) {
         fprintf(stderr, "Failed to create runtime\n");
@@ -86,10 +82,14 @@ JsEnv::JsEnv()
     LoadIndexJs(ctx);
 }
 
-JsEnv::~JsEnv()
-{  
+void JsEnv::Dispose()
+{
     JS_FreeContext(ctx);
     JS_FreeRuntime(rt);
+}
+
+JsEnv::~JsEnv()
+{  
 }
 
 void JsEnv::Init()
