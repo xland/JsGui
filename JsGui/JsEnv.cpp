@@ -24,18 +24,11 @@ JsEnv::JsEnv()
         return;
     }   
     Win::Reg(ctx);
-    //JSModuleDef* m = JS_NewCModule(ctx, "sg", &JsEnv::RegModel);
-    //if (!m)
-    //{
-    //    return;
-    //}
-    //auto ret = JS_AddModuleExport(ctx, m, "Win");
     LoadIndexJs(ctx);
 }
 
 void JsEnv::Dispose()
 {
-    //Win::Dispose(ctx);
     JS_FreeContext(ctx);
     JS_FreeRuntime(rt);
     delete env;

@@ -8,10 +8,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
     //    return 0;
     //}
     
-    JsEnv::Init();
-    webui::window myWindow;
-    myWindow.set_position(900, 1000);
-    myWindow.show("<html><script src=\"webui.js\"></script> Hello World from C++! </html>");
+    JsEnv::Init();    
     webui::wait();
     JsEnv::Dispose();
     //CoUninitialize();

@@ -31,7 +31,6 @@
   <ItemGroup>
     <None Include="build.md" />
     <None Include="todo.md" />
-    <None Include="main.js" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="JsEnv.h">
@@ -43,5 +42,11 @@
     <ClInclude Include="Fs.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Util.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="main.js" />
   </ItemGroup>
 </Project>

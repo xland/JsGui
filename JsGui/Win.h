@@ -1,15 +1,11 @@
 #pragma once
+#include <webui.hpp>
 extern "C" {
 #include <quickjs.h>
 }
-class Win
+namespace Win
 {
-public:
-	~Win();
-	static JSValue Constructor(JSContext* ctx, JSValueConst arg, int argc, JSValueConst* argv);
-	static void Reg(JSContext* ctx);
-	static void Dispose(JSContext* ctx);
-private:
-	Win();
+	JSValue Constructor(JSContext* ctx, JSValueConst arg, int argc, JSValueConst* argv);
+	void Reg(JSContext* ctx);
 };
 
