@@ -8,19 +8,7 @@ extern "C" {
 
 
 void my_function(webui_event_t* e) {
-
-    if (e->event_type == WEBUI_EVENT_CONNECTED)
-        printf("Connected. \n");
-    else if (e->event_type == WEBUI_EVENT_DISCONNECTED)
-        printf("Disconnected. \n");
-    else if (e->event_type == WEBUI_EVENT_MOUSE_CLICK)
-        printf("Click. \n");
-    else if (e->event_type == WEBUI_EVENT_NAVIGATION)
-
-    // Send back a response to JavaScript
-    webui_return_int(e, 123); // As integer
-    webui_return_bool(e, true); // As boolean
-    webui_return_string(e, "My Response"); // As string
+    webui_close(e->window);
 }
 
 
@@ -33,14 +21,14 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
     
     auto winId = webui_new_window();
     //webui_set_position(winId, 300, 300);
-    webui_show(winId, "<html><script src=\"webui.js\"></script> Hello World from C++! <button id=\"MyID\">Hello</button> </html>");
+    webui_show_browser(winId, "<html><script src=\"webui.js\"></script> Hello World from C++! <button id=\"MyID\">Hello</button> </html>", webui_browsers::Edge);
     //webui_run(winId, "alert('Fast!');");
-    //webui_bind(winId, "MyID", my_function);
-    webui_close(winId);
-    webui_destroy(winId);
+    webui_bind(winId, "MyID", my_function);
 
-    webui_set_timeout(0);
+
+    webui_set_timeout(3000);
     webui_wait();
+
 
 
     //JsEnv::Init();    

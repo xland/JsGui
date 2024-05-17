@@ -1,4 +1,4 @@
-#include "Win.h"
+ï»¿#include "Win.h"
 #include "Util.h"
 #include <vector>
 #include "cutils.h"
@@ -9,13 +9,13 @@ static JSValue protoInstance;
 static JSClassID id{ 0 };
 std::vector<size_t> winIds;
 static JSClassDef js_win_class = {
-	.class_name{"Win"}, // ÀàÃû
+	.class_name{"Win"}, // ç±»å
 	.finalizer{[](JSRuntime* rt, JSValue val) {
 		auto winId = *(size_t*)JS_GetOpaque(val, id);
 		webui_destroy(winId);
 		winIds.erase(std::remove(winIds.begin(), winIds.end(), winId), winIds.end());
-		//todo js_free_rtÒÑ¾­°ïÎÒÊÍ·ÅÁË×ÊÔ´£¬ËùÒÔ²»ÄÜÔÙdelete winÁË
-		//Èç¹ûwin³ÖÓĞÆäËüÖ¸Õë£¬µÃÔÚÕâÀïĞ´deleteÊÍ·Å
+		//todo js_free_rtå·²ç»å¸®æˆ‘é‡Šæ”¾äº†èµ„æºï¼Œæ‰€ä»¥ä¸èƒ½å†delete winäº†
+		//å¦‚æœwinæŒæœ‰å…¶å®ƒæŒ‡é’ˆï¼Œå¾—åœ¨è¿™é‡Œå†™deleteé‡Šæ”¾
 		//js_free_rt(rt, win);
 		//JS_FreeValue(JsEnv::GetContext(), val);
 	}}
