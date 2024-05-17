@@ -1,6 +1,7 @@
 #include "Win.h"
 #include "Util.h"
 #include <vector>
+#include "cutils.h"
 
 namespace Win {
 static JSValue ctroInstance;
@@ -11,13 +12,22 @@ static JSClassDef js_win_class = {
 	.class_name{"Win"}, // 类名
 	.finalizer{[](JSRuntime* rt, JSValue val) {
 		auto winId = *(size_t*)JS_GetOpaque(val, id);
-
+		webui_destroy(winId);
+		winIds.erase(std::remove(winIds.begin(), winIds.end(), winId), winIds.end());
 		//todo js_free_rt已经帮我释放了资源，所以不能再delete win了
 		//如果win持有其它指针，得在这里写delete释放
 		//js_free_rt(rt, win);
 		//JS_FreeValue(JsEnv::GetContext(), val);
 	}}
 };
+
+JSValue Close(JSContext* ctx, JSValueConst thisVal, int argc, JSValueConst* argv) {
+	auto winId = *(size_t*)JS_GetOpaque(thisVal, id);
+	webui_close(winId);
+	webui_destroy(winId);
+	winIds.erase(std::remove(winIds.begin(), winIds.end(), winId), winIds.end());
+	return JS_NewBool(ctx, true);
+}
 
 
 JSValue Constructor(JSContext* ctx, JSValueConst new_target, int argc, JSValueConst* argv)
@@ -28,6 +38,12 @@ JSValue Constructor(JSContext* ctx, JSValueConst new_target, int argc, JSValueCo
 	webui_show(winId, "<html><script src=\"webui.js\"></script> Hello World from C++! </html>");
 	winIds.push_back(winId);
 	JS_SetOpaque(obj, (void*)&winIds.back());
+
+
+	webui_close(winId);
+	webui_destroy(winId);
+	winIds.erase(std::remove(winIds.begin(), winIds.end(), winId), winIds.end());
+
 	return obj;
 }
 
@@ -37,6 +53,7 @@ void Reg(JSContext* ctx)
 	JS_NewClassID(rt,&id);
 	JS_NewClass(rt, id, &js_win_class);
 	protoInstance = JS_NewObject(ctx);
+	JS_SetPropertyStr(ctx, protoInstance, "close", JS_NewCFunction(ctx, Close, "close", 0));
 	//JS_SetPropertyFunctionList(ctx, protoInstance, funcs, countof(funcs));
 	ctroInstance = JS_NewCFunction2(ctx, &Win::Constructor, js_win_class.class_name, 0, JS_CFUNC_constructor,0);	
 	JS_SetConstructor(ctx, ctroInstance, protoInstance);
