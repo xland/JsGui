@@ -102,7 +102,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;UNICODE;DEBUG;WIN32_LEAN_AND_MEAN;WEBUI_LOG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;UNICODE;DEBUG;WIN32_LEAN_AND_MEAN;WEBUI_LOG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>D:\sdk\webui\include;D:\sdk\quickjs;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -147,6 +147,7 @@
     <ClCompile Include="Fs.cpp" />
     <ClCompile Include="JsEnv.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Util.cpp" />
     <ClCompile Include="Win.cpp" />
   </ItemGroup>
   <ItemGroup>

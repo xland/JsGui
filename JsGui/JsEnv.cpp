@@ -54,26 +54,22 @@ JsEnv::JsEnv()
     js_init_module_std(ctx, "std");
     js_std_add_helpers(ctx, 0, nullptr);
     js_init_module_os(ctx, "os");
-    
-    js_std_add_helpers(ctx, 0, nullptr);
 
-    JSValue global_obj, console_obj;
-    global_obj = JS_GetGlobalObject(ctx);
-    console_obj = JS_NewObject(ctx);
-    JS_SetPropertyStr(ctx, console_obj, "log", JS_NewCFunction(ctx, js_console_log, "log", 1));
-    JS_SetPropertyStr(ctx, global_obj, "console", console_obj);
+
+    JSValue global_obj = JS_GetGlobalObject(ctx);
+    JSValue consoleObj = JS_NewObject(ctx);
+    JS_SetPropertyStr(ctx, consoleObj, "log", JS_NewCFunction(ctx, js_console_log, "log", 1));
+    JS_SetPropertyStr(ctx, global_obj, "console", consoleObj);
     JS_FreeValue(ctx, global_obj);
 
     Win::Reg(ctx);
     LoadIndexJs(ctx);
-
     js_std_loop(ctx);
 }
 
 void JsEnv::Dispose()
 {
     JS_FreeContext(ctx);
-    js_std_free_handlers(rt);
     JS_FreeRuntime(rt);
     delete env;
 }

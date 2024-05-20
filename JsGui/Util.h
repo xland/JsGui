@@ -1,8 +1,11 @@
 #pragma once
-
 extern "C" {
 #include <quickjs.h>
 }
+
+#ifdef DEBUG
+void InitDebuger();
+#endif
 
 constexpr JSCFunctionListEntry MakeJsFunc(const char* name, uint8_t length, JSCFunction* func) {
     return JSCFunctionListEntry{
