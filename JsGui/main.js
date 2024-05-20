@@ -12,4 +12,4 @@
 
 globalThis.win = new Win();
 
-//console.log(123);
+console.log(123);

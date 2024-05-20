@@ -24,3 +24,11 @@ constexpr JSCFunctionListEntry MakeJsFunc(const char* name, uint8_t length, JSCF
         }
     };
 };
+constexpr JSValue MakeVal(int32_t val, int64_t tag) {
+    return { 
+        .u{
+            .int32{val}
+        },
+        .tag{tag}
+    };
+}

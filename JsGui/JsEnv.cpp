@@ -5,6 +5,7 @@
 #include <filesystem>
 #include <fstream>
 #include "Win.h"
+#include "Util.h"
 
 
 static JsEnv* env;
@@ -12,17 +13,15 @@ JSContext* ctx;
 JSRuntime* rt;
 
 static JSValue js_console_log(JSContext* ctx, JSValueConst this_val, int argc, JSValueConst* argv) {
-    int i;
-    for (i = 0; i < argc; i++) {
-        const char* str;
-        str = JS_ToCString(ctx, argv[i]);
+    for (int i = 0; i < argc; i++) {
+        const char* str = JS_ToCString(ctx, argv[i]);
         if (str) {
             printf("%s", str);
             JS_FreeCString(ctx, str);
         }
     }
     printf("\n");
-    return JS_NewBool(ctx, true);
+    return MakeVal(0, JS_TAG_UNDEFINED);
 }
 
 static JSContext* JS_NewCustomContext(JSRuntime* rt)
