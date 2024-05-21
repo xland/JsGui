@@ -1,5 +1,5 @@
 //import * as os from 'os'
-//import * as std from "std";
+import * as std from "std";
 
 
 //(function (g) {
@@ -11,5 +11,6 @@
 
 
 globalThis.win = new Win();
-
-console.log(123);
+win.setRootFolder("ui");
+win.show("index.html")
+win.setSize(800, 600);
