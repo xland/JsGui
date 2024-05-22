@@ -111,8 +111,7 @@ JSValue Bind(JSContext* ctx, JSValueConst thisVal, int argc, JSValueConst* argv)
 	}
 	if (!JS_IsFunction(ctx, argv[1])) {
 		return JS_ThrowTypeError(ctx, "arg 1 error");
-	}
-	
+	}	
 	auto winId = *(size_t*)JS_GetOpaque(thisVal, id);
 	auto bindId = webui_bind(winId, eleId, [](webui_event_t* e) {
 		auto ctx = JsEnv::GetContext();
@@ -150,7 +149,6 @@ void Reg(JSContext* ctx)
 	JS_SetPropertyStr(ctx, protoInstance, "close", JS_NewCFunction(ctx, Close, "close", 0));
 	JS_SetPropertyStr(ctx, protoInstance, "run", JS_NewCFunction(ctx, Run, "run", 1));
 	JS_SetPropertyStr(ctx, protoInstance, "bind", JS_NewCFunction(ctx, Bind, "bind", 2));
-	//JS_SetPropertyFunctionList(ctx, protoInstance, funcs, countof(funcs));
 	JSValue ctroInstance = JS_NewCFunction2(ctx, &Win::Constructor, js_win_class.class_name, 0, JS_CFUNC_constructor,0);
 	JS_SetConstructor(ctx, ctroInstance, protoInstance);
 	JS_SetClassProto(ctx, id, protoInstance);
